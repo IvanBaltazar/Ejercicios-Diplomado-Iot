@@ -1,0 +1,523 @@
+[
+    {
+        "id": "867fb348.0b131",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1d5d05b8.c28832",
+        "type": "ui_switch",
+        "z": "867fb348.0b131",
+        "name": "",
+        "label": "Switch - Label",
+        "tooltip": "",
+        "group": "e6d23854.a005",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 100,
+        "y": 480,
+        "wires": [
+            [
+                "2fc80ef7.9c1c22"
+            ]
+        ]
+    },
+    {
+        "id": "e1a18a12.e449e8",
+        "type": "ui_text_input",
+        "z": "867fb348.0b131",
+        "name": "",
+        "label": "Nombre - Label",
+        "tooltip": "",
+        "group": "95858c89.8dac2",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 960,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "db2217c5.58e548",
+        "type": "ui_gauge",
+        "z": "867fb348.0b131",
+        "name": "",
+        "group": "95858c89.8dac2",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura - Label",
+        "label": "°C - units",
+        "format": "{{value}}",
+        "min": "10",
+        "max": "45",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 980,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "252513a5.287884",
+        "type": "ui_chart",
+        "z": "867fb348.0b131",
+        "name": "",
+        "group": "4102c136.209888",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "10",
+        "ymax": "45",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 930,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f7471286.7b276",
+        "type": "mqtt in",
+        "z": "867fb348.0b131",
+        "name": "",
+        "topic": "codigoIoT/SIC/flow3/temp",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "edd3004a.11da88",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 130,
+        "y": 100,
+        "wires": [
+            [
+                "75691e2.5e5d86"
+            ]
+        ]
+    },
+    {
+        "id": "edb08b0a.75e298",
+        "type": "debug",
+        "z": "867fb348.0b131",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1510,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "75691e2.5e5d86",
+        "type": "json",
+        "z": "867fb348.0b131",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 370,
+        "y": 100,
+        "wires": [
+            [
+                "e84313a3.b650e",
+                "5c4fa3a5.2160cc",
+                "ada36c02.e42af",
+                "a56a8def.c30b58"
+            ]
+        ]
+    },
+    {
+        "id": "e84313a3.b650e",
+        "type": "function",
+        "z": "867fb348.0b131",
+        "name": "get-ID-function",
+        "func": "msg.payload = msg.payload.ID;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 100,
+        "wires": [
+            [
+                "e1a18a12.e449e8"
+            ]
+        ]
+    },
+    {
+        "id": "5c4fa3a5.2160cc",
+        "type": "function",
+        "z": "867fb348.0b131",
+        "name": "get-Temp-function",
+        "func": "msg.payload = msg.payload.Temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 240,
+        "wires": [
+            [
+                "db2217c5.58e548",
+                "e927e67c.49a14"
+            ]
+        ]
+    },
+    {
+        "id": "ada36c02.e42af",
+        "type": "function",
+        "z": "867fb348.0b131",
+        "name": "get-id-Temp-function",
+        "func": "msg.topic = msg.payload.ID;\nmsg.payload = msg.payload.Temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 440,
+        "wires": [
+            [
+                "252513a5.287884"
+            ]
+        ]
+    },
+    {
+        "id": "d044ab55.837f9",
+        "type": "ui_text",
+        "z": "867fb348.0b131",
+        "group": "95858c89.8dac2",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Mensaje Recibido - Label",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 990,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "a56a8def.c30b58",
+        "type": "function",
+        "z": "867fb348.0b131",
+        "name": "get-mnsg-function",
+        "func": "msg.payload = msg.payload.mnsg;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 160,
+        "wires": [
+            [
+                "d044ab55.837f9"
+            ]
+        ]
+    },
+    {
+        "id": "2fc80ef7.9c1c22",
+        "type": "mqtt out",
+        "z": "867fb348.0b131",
+        "name": "",
+        "topic": "codigoIoT/SIC/flow3/sw",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "edd3004a.11da88",
+        "x": 430,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "e927e67c.49a14",
+        "type": "switch",
+        "z": "867fb348.0b131",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "26",
+                "vt": "num"
+            },
+            {
+                "t": "lt",
+                "v": "26",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 930,
+        "y": 320,
+        "wires": [
+            [
+                "1e5b1aa4.6eda2d"
+            ],
+            [
+                "828205e8.95ea"
+            ]
+        ]
+    },
+    {
+        "id": "1e5b1aa4.6eda2d",
+        "type": "change",
+        "z": "867fb348.0b131",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1240,
+        "y": 320,
+        "wires": [
+            [
+                "52df2748.e2eeb",
+                "a57f4287.565df8",
+                "edb08b0a.75e298"
+            ]
+        ]
+    },
+    {
+        "id": "828205e8.95ea",
+        "type": "change",
+        "z": "867fb348.0b131",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1240,
+        "y": 360,
+        "wires": [
+            [
+                "52df2748.e2eeb"
+            ]
+        ]
+    },
+    {
+        "id": "52df2748.e2eeb",
+        "type": "ui_switch",
+        "z": "867fb348.0b131",
+        "name": "",
+        "label": "Monitor Switch - Label",
+        "tooltip": "",
+        "group": "e6d23854.a005",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 1540,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9d2280d7.7f0fd8",
+        "type": "ui_audio",
+        "z": "867fb348.0b131",
+        "name": "",
+        "group": "e6d23854.a005",
+        "voice": "urn:moz-tts:speechd:Spanish%20(Latin%20America)?es-419",
+        "always": "",
+        "x": 1800,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "a57f4287.565df8",
+        "type": "change",
+        "z": "867fb348.0b131",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Hace mucho calor, Hugo",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1520,
+        "y": 400,
+        "wires": [
+            [
+                "9d2280d7.7f0fd8"
+            ]
+        ]
+    },
+    {
+        "id": "e6d23854.a005",
+        "type": "ui_group",
+        "name": "Control - Group 3",
+        "tab": "e697afcd.588c1",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "95858c89.8dac2",
+        "type": "ui_group",
+        "name": "Informacion Recibida - Group 1",
+        "tab": "e697afcd.588c1",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "4102c136.209888",
+        "type": "ui_group",
+        "name": "Historico - Group 2",
+        "tab": "e697afcd.588c1",
+        "order": 3,
+        "disp": true,
+        "width": "16",
+        "collapse": false
+    },
+    {
+        "id": "edd3004a.11da88",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "3.68.34.73",
+        "port": "1883",
+        "clientid": "ESP32IvanB",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "e697afcd.588c1",
+        "type": "ui_tab",
+        "name": "Temperatura Grupal MQTT - Tab",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]
