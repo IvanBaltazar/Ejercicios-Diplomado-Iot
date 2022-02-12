@@ -1,0 +1,197 @@
+[
+    {
+        "id": "c3c8e685d97d355f",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b4c623f1b511565a",
+        "type": "ui_chart",
+        "z": "c3c8e685d97d355f",
+        "name": "",
+        "group": "349cfd9a4f8ba3e0",
+        "order": 0,
+        "width": "6",
+        "height": "6",
+        "label": "core vs Tiempo",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "1",
+        "ymax": "100",
+        "removeOlder": "40",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 960,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "057b3ed8fd83171a",
+        "type": "json",
+        "z": "c3c8e685d97d355f",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 470,
+        "y": 160,
+        "wires": [
+            [
+                "2288db01c86a7fd3",
+                "ad4b8d3ae29d5146"
+            ]
+        ]
+    },
+    {
+        "id": "dd8cd348a21823b9",
+        "type": "mqtt in",
+        "z": "c3c8e685d97d355f",
+        "name": "",
+        "topic": "codigoIoT/SIC/flowRG/core",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "26782d7ab1816dce",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 280,
+        "y": 160,
+        "wires": [
+            [
+                "057b3ed8fd83171a"
+            ]
+        ]
+    },
+    {
+        "id": "2288db01c86a7fd3",
+        "type": "function",
+        "z": "c3c8e685d97d355f",
+        "name": "",
+        "func": "msg.payload = msg.payload.ID;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 100,
+        "wires": [
+            [
+                "311bc08480da77fa"
+            ]
+        ]
+    },
+    {
+        "id": "ad4b8d3ae29d5146",
+        "type": "function",
+        "z": "c3c8e685d97d355f",
+        "name": "",
+        "func": "msg.topic = msg.payload.ID;\nmsg.payload = msg.payload.Core;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 280,
+        "wires": [
+            [
+                "b4c623f1b511565a"
+            ]
+        ]
+    },
+    {
+        "id": "311bc08480da77fa",
+        "type": "ui_text",
+        "z": "c3c8e685d97d355f",
+        "group": "44b4cc90543cf023",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "name": "",
+        "label": "ID",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "x": 920,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "349cfd9a4f8ba3e0",
+        "type": "ui_group",
+        "name": "Uso",
+        "tab": "4437141b5e9c47ae",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "26782d7ab1816dce",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "3.66.119.222",
+        "port": "1883",
+        "clientid": "IvBalt_35478",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "44b4cc90543cf023",
+        "type": "ui_group",
+        "name": "identificador",
+        "tab": "4437141b5e9c47ae",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "4437141b5e9c47ae",
+        "type": "ui_tab",
+        "name": "Core",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]
